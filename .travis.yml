@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+    - "0.10.33"
+jdk:
+    - "openjdk7"
+env:
+    - VNU_BIN="./validatornu"

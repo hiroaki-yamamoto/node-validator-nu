@@ -1,0 +1,25 @@
+{
+    "name": "validator-nu",
+    "description": "HTML5 validator using validator.nu, but not remotely",
+    "repository": "https://notspecified.yet/",
+    "version": "0.0.1",
+    "license": "MIT",
+    "author": {
+        "name": "Hiroaki Yamamoto",
+        "email": "admin@hysoftware.net",
+        "url" : "https://hysoftware.net/"
+    },
+    "main": "./lib/validatornu.js",
+    "devDependencies": {
+        "grunt": "latest",
+        "jslint": "latest",
+        "nodeunit": "latest",
+        "grunt-contrib-watch": "latest",
+        "grunt-jslint": "latest",
+        "grunt-contrib-nodeunit": "latest",
+        "matchdep": "latest"
+    },
+    "scripts": {
+        "test": "grunt jslint:chk&&grunt nodeunit:all"
+    }
+}
