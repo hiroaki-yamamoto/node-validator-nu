@@ -5,7 +5,7 @@
         var validatornu = require("../../lib/validatornu");
         test.doesNotThrow(
             function () {
-                validatornu.validate("<html>");
+                validatornu.validate("<html>", undefined, process.env.VNU_BIN);
             }
         );
         test.done();
