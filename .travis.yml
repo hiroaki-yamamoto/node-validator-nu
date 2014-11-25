@@ -1,6 +1,8 @@
 language: node_js
 node_js:
     - "0.10.33"
+before_install:
+    - "npm install -g grunt-cli"
 jdk:
     - "openjdk7"
 env:
