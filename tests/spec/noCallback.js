@@ -1,5 +1,5 @@
-/*global exports, require*/
-(function (exports, require) {
+/*global exports, require, process*/
+(function (exports, require, process) {
     "use strict";
     exports.testDefine = function (test) {
         var validatornu = require("../../lib/validatornu");
@@ -10,4 +10,4 @@
         );
         test.done();
     };
-}(exports, require));
+}(exports, require, process));
