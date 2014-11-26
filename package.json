@@ -1,7 +1,7 @@
 {
     "name": "validator-nu",
     "description": "HTML5 validator using validator.nu, but not remotely",
-    "repository": "https://notspecified.yet/",
+    "repository": "https://github.com/hysoftware/node-validator-nu.git",
     "version": "1.0.0",
     "license": "MIT",
     "author": {
