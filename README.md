@@ -4,6 +4,8 @@
 [![devDependency Status](https://david-dm.org/hysoftware/node-validator-nu/dev-status.svg)](https://david-dm.org/hysoftware/node-validator-nu#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/hysoftware/node-validator-nu/badges/gpa.svg)](https://codeclimate.com/github/hysoftware/node-validator-nu)
 
+[![NPM](https://nodei.co/npm/validator-nu.png?downloads=true&downloadRank=true)](https://nodei.co/npm/validator-nu/)
+
 ## What this?
 
 [Validator NU](http://validator.github.io/validator/) is known as a backend of [W3C HTML Validator](http://validator.w3.org/), but it provides grunt task file only, it doesn't provide API for node module.
