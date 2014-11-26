@@ -6,4 +6,4 @@ before_install:
 jdk:
     - "openjdk7"
 env:
-    - VNU_BIN="./validatornu"
+    - VNU_BIN="./vnu/vnu.jar"
