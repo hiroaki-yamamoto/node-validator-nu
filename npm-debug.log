@@ -1,0 +1,58 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'tag',
+1 verbose cli   'validator-nu@1.0.1',
+1 verbose cli   '--tag',
+1 verbose cli   '1.0.1' ]
+2 warn invalid config tag="1.0.1"
+3 warn invalid config Tag must not be a SemVer range
+4 info using npm@2.1.10
+5 info using node@v0.10.33
+6 silly mapToRegistry name validator-nu
+7 silly mapToRegistry using default registry
+8 silly mapToRegistry registry https://registry.npmjs.org/
+9 silly mapToRegistry uri https://registry.npmjs.org/validator-nu
+10 verbose request uri https://registry.npmjs.org/validator-nu/latest
+11 verbose request sending authorization for write operation
+12 info attempt registry request try #1 at 09:12:44
+13 verbose request id 25c8507b83c21ed7
+14 http request PUT https://registry.npmjs.org/validator-nu/latest
+15 http 403 https://registry.npmjs.org/validator-nu/latest
+16 verbose headers { date: 'Wed, 26 Nov 2014 00:12:44 GMT',
+16 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+16 verbose headers   'content-type': 'application/json',
+16 verbose headers   'cache-control': 'max-age=60',
+16 verbose headers   'content-length': '78',
+16 verbose headers   'accept-ranges': 'bytes',
+16 verbose headers   via: '1.1 varnish',
+16 verbose headers   'x-served-by': 'cache-ty66-TYO',
+16 verbose headers   'x-cache': 'MISS',
+16 verbose headers   'x-cache-hits': '0',
+16 verbose headers   'x-timer': 'S1416960764.423638,VS0,VE122',
+16 verbose headers   'keep-alive': 'timeout=10, max=50',
+16 verbose headers   connection: 'Keep-Alive' }
+17 verbose request invalidating /home/hyamamoto/.npm/registry.npmjs.org/validator-nu/latest on PUT
+18 verbose stack Error: forbidden setting tag latest to unknown version: 1.0.1: validator-nu,latest
+18 verbose stack     at CachingRegistryClient.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:234:14)
+18 verbose stack     at Request._callback (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+18 verbose stack     at Request.self.callback (/usr/lib/node_modules/npm/node_modules/request/request.js:372:22)
+18 verbose stack     at Request.emit (events.js:98:17)
+18 verbose stack     at Request.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:1317:14)
+18 verbose stack     at Request.emit (events.js:117:20)
+18 verbose stack     at IncomingMessage.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:1265:12)
+18 verbose stack     at IncomingMessage.emit (events.js:117:20)
+18 verbose stack     at _stream_readable.js:943:16
+18 verbose stack     at process._tickCallback (node.js:419:13)
+19 verbose statusCode 403
+20 verbose pkgid validator-nu
+21 verbose cwd /home/hyamamoto/Documents/Workspace/node-validator-nu
+22 error Linux 3.17.3-1-ARCH
+23 error argv "/usr/bin/node" "/usr/bin/npm" "tag" "validator-nu@1.0.1" "--tag" "1.0.1"
+24 error node v0.10.33
+25 error npm  v2.1.10
+26 error code E403
+27 error forbidden setting tag latest to unknown version: 1.0.1: validator-nu,latest
+28 error If you need help, you may report this error at:
+28 error     <http://github.com/npm/npm/issues>
+29 verbose exit [ 1, true ]
