@@ -20,7 +20,7 @@ Just simple:
 ~~~~
 /*global exports, require*/
 (function (exports, require) {
-    var vnu = require("validatornu");
+    var vnu = require("validator-nu");
     // Put HTML data, not the name of the file.
     vnu.validate("html here", function () {
         // callback
