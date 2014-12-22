@@ -1,4 +1,4 @@
-/*global exports, require, process, console*/
+/*global exports, require, process*/
 (function (exports, require, process) {
     "use strict";
     exports.testInValidData = function (test) {

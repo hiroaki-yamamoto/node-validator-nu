@@ -1,5 +1,5 @@
-/*global exports, require, process, console*/
-(function (exports, require) {
+/*global exports, require, process*/
+(function (exports, require, process) {
     "use strict";
     exports.testValidData = function (test) {
         var fs = require("fs"),
