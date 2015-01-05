@@ -22,12 +22,17 @@ Just simple:
 (function (exports, require) {
     var vnu = require("validator-nu");
     // Put HTML data, not the name of the file.
-    vnu.validate("html here", function () {
+    vnu.validate("html here", function (result) {
         // callback
     });
     // If you got validatornu was not found, set vnu path to 3rd parameter.
-    vnu.validate("html here", function () {
+    vnu.validate("html here", function (result) {
         // callback
     }, "/usr/bin/vnu.jar");
 }(exports, require));
 ~~~~
+
+## Exceptions
+Because this API uses [child_process.spawn](http://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options) and
+[path.join](http://nodejs.org/api/path.html#path_path_join_path1_path2), sometimes the API throws
+standard exceptions. In that case, you will need to check VNU Path and the target source file path...
