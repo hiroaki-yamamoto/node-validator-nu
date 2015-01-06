@@ -14,4 +14,37 @@
             }, process.env.VNU_BIN);
         });
     };
+    exports.testValidFile = function (test) {
+        var validatornu = require("../../lib/validatornu");
+        validatornu.validateFiles(
+            "./tests/data/valid.html",
+            function (result) {
+                test.equal(
+                    result.length,
+                    0,
+                    "result shouldn't have anything"
+                );
+                test.done();
+            },
+            process.env.VNU_BIN
+        );
+    };
+    exports.testValidFiles = function (test) {
+        var validatornu = require("../../lib/validatornu");
+        validatornu.validateFiles(
+            [
+                "./tests/data/valid.html",
+                "./tests/data/valid2.html"
+            ],
+            function (result) {
+                test.equal(
+                    result.length,
+                    0,
+                    "result shouldn't have anything"
+                );
+                test.done();
+            },
+            process.env.VNU_BIN
+        );
+    };
 }(exports, require, process));

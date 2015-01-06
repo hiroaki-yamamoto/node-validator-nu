@@ -1,7 +1,7 @@
 /*global exports, require, process*/
 (function (exports, require, process) {
     "use strict";
-    exports.testDefine = function (test) {
+    exports.testInvalidCallback = function (test) {
         var validatornu = require("../../lib/validatornu");
         test.doesNotThrow(
             function () {
@@ -10,7 +10,25 @@
         );
         test.doesNotThrow(
             function () {
+                validatornu.validateFiles(
+                    "tests/data/valid.html",
+                    "blaaaaa",
+                    process.env.VNU_BIN
+                );
+            }
+        );
+        test.doesNotThrow(
+            function () {
                 validatornu.validate("<html>", 12345, process.env.VNU_BIN);
+            }
+        );
+        test.doesNotThrow(
+            function () {
+                validatornu.validateFiles(
+                    "tests/data/valid.html",
+                    12345,
+                    process.env.VNU_BIN
+                );
             }
         );
         test.doesNotThrow(
@@ -22,7 +40,25 @@
         );
         test.doesNotThrow(
             function () {
+                validatornu.validateFiles(
+                    "tests/data/valid.html",
+                    {"a": "b"},
+                    process.env.VNU_BIN
+                );
+            }
+        );
+        test.doesNotThrow(
+            function () {
                 validatornu.validate("<html>", ["a"], process.env.VNU_BIN);
+            }
+        );
+        test.doesNotThrow(
+            function () {
+                validatornu.validateFiles(
+                    "tests/data/valid.html",
+                    ["a"],
+                    process.env.VNU_BIN
+                );
             }
         );
         test.done();
