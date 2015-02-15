@@ -1,8 +1,8 @@
 # Local VNu HTML 5 Validator API for nodejs
 
-[![Build Status](https://travis-ci.org/hysoftware/node-validator-nu.svg?branch=master)](https://travis-ci.org/hysoftware/node-validator-nu)
-[![devDependency Status](https://david-dm.org/hysoftware/node-validator-nu/dev-status.svg)](https://david-dm.org/hysoftware/node-validator-nu#info=devDependencies)
-[![Code Climate](https://codeclimate.com/github/hysoftware/node-validator-nu/badges/gpa.svg)](https://codeclimate.com/github/hysoftware/node-validator-nu)
+[![Build Status](https://travis-ci.org/hiroaki-yamamoto/node-validator-nu.svg?branch=master)](https://travis-ci.org/hiroaki-yamamoto/node-validator-nu)
+[![devDependency Status](https://david-dm.org/hiroaki-yamamoto/node-validator-nu/dev-status.svg)](https://david-dm.org/hysoftware/node-validator-nu#info=devDependencies)
+[![Code Climate](https://codeclimate.com/github/hiroaki-yamamoto/node-validator-nu/badges/gpa.svg)](https://codeclimate.com/github/hysoftware/node-validator-nu)
 
 [![NPM](https://nodei.co/npm/validator-nu.png?downloads=true&downloadRank=true)](https://nodei.co/npm/validator-nu/)
 
