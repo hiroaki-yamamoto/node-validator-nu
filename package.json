@@ -1,25 +1,32 @@
 {
-    "name": "validator-nu",
-    "description": "HTML5 validator using validator.nu, but not remotely",
-    "repository": "https://github.com/hysoftware/node-validator-nu.git",
-    "version": "1.0.3",
-    "license": "MIT",
-    "author": {
-        "name": "Hiroaki Yamamoto",
-        "email": "admin@hysoftware.net",
-        "url" : "https://hysoftware.net/"
-    },
-    "main": "./lib/validatornu.js",
-    "devDependencies": {
-        "grunt": "latest",
-        "jslint": "latest",
-        "nodeunit": "latest",
-        "grunt-contrib-watch": "latest",
-        "grunt-jslint": "latest",
-        "grunt-contrib-nodeunit": "latest",
-        "matchdep": "latest"
-    },
-    "scripts": {
-        "test": "grunt jslint:chk&&grunt nodeunit:all"
-    }
+  "name": "validator-nu",
+  "description": "HTML5 validator using validator.nu, but not remotely",
+  "repository": "https://github.com/hysoftware/node-validator-nu.git",
+  "version": "1.0.3",
+  "license": "MIT",
+  "author": {
+    "name": "Hiroaki Yamamoto",
+    "email": "admin@hysoftware.net",
+    "url" : "https://hysoftware.net/"
+  },
+  "main": "./lib/validatornu.js",
+  "dependencies": {
+    "q": "latest"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "jslint": "latest",
+    "mocha": "latest",
+    "chai": "latest",
+    "coffeelint": "latest",
+    "coffee-script": "latest",
+    "gulp": "latest",
+    "gulp-coffeelint": "latest",
+    "gulp-coffee": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-mocha": "latest"
+  },
+  "scripts": {
+    "test": "gulp test"
+  }
 }
