@@ -13,8 +13,7 @@ describe "Mixed files test cases", ->
           "type": "error"
           "message": "No “p” element in scope but a “p” end tag seen."
         ]
-        done()
       vnu.validateFiles([
         "./tests/data/valid.html",
         "./tests/data/invalid2.html"
-      ], process.env.VNU_BIN).then(cb).catch (err) -> throw err
+      ], process.env.VNU_BIN).then(cb).catch((err) -> throw err).finally done

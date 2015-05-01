@@ -25,7 +25,7 @@ gulp.task "test", ["stylecheck"], ->
   gulp.src(
     "tests/spec/*.coffee"
   ).pipe(mocha(
-    "timeout": 300000
+    "timeout": 10000
   ))
 
 gulp.task "compile", ["stylecheck"], ->

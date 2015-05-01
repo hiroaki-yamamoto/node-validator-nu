@@ -11,7 +11,8 @@
   },
   "main": "./lib/validatornu.js",
   "dependencies": {
-    "q": "latest"
+    "q": "latest",
+    "deepcopy": "latest"
   },
   "devDependencies": {
     "grunt": "latest",

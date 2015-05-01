@@ -1,8 +1,7 @@
-module.exports = (files, vnuPath) ->
-  validatorPath = vnuPath or "/usr/share/java/validatornu/vnu.jar"
+module.exports = (files, vnuPath="/usr/share/java/validatornu/vnu.jar") ->
   spawn = require("child_process").spawn
   path = require "path"
-  args = ["-jar", validatorPath, "--format", "json"].concat files
+  args = ["-jar", vnuPath, "--format", "json"].concat files
   defer = require("q").defer()
 
   try
