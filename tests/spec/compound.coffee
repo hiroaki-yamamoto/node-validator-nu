@@ -1,5 +1,5 @@
 expect = require("chai").expect
-vnu = require "../../lib/validatornu"
+vnu = require "../../src/validatornu"
 
 describe "Mixed files test cases", ->
   describe "Valid file and Invalid file are given", ->

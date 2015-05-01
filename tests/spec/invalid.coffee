@@ -2,7 +2,7 @@ fs = require "fs"
 q = require "q"
 
 expect = require("chai").expect
-vnu = require "../../lib/validatornu"
+vnu = require "../../src/validatornu"
 
 describe "Invalid case tests", ->
   describe "Raw data test", ->

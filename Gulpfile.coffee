@@ -28,8 +28,14 @@ gulp.task "test", ["stylecheck"], ->
     "timeout": 300000
   ))
 
+gulp.task "compile", ["stylecheck"], ->
+  gulp.src(
+    "src/**/*.coffee"
+  ).pipe(coffee()).pipe(gulp.dest("./lib"))
+
 gulp.task "default", ->
   gulp.watch(coffees, [
     "stylecheck"
+    "compile"
     "test"
   ])

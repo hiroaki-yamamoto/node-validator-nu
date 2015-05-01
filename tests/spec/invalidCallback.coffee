@@ -1,4 +1,4 @@
-vnu = require "../../lib/validatornu"
+vnu = require "../../src/validatornu"
 expect = require("chai").expect
 
 describe "Invalid callback tests", ->

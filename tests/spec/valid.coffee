@@ -1,4 +1,4 @@
-vnu = require "../../lib/validatornu"
+vnu = require "../../src/validatornu"
 q = require "q"
 fs = require "fs"
 expect = require("chai").expect
