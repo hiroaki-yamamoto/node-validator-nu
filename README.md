@@ -8,28 +8,108 @@
 
 ## What this?
 
-[Validator NU](http://validator.github.io/validator/) is known as a backend of [W3C HTML Validator](http://validator.w3.org/), but it provides grunt task file only, it doesn't provide API for node module.
+[Validator NU](http://validator.github.io/validator/) is known as a backend of
+[W3C HTML Validator](http://validator.w3.org/), but it provides grunt task
+file only, it doesn't provide API for node module.
 
-In addition to this, I want to use this validator on Brackets, but unfortunately, it doesn't.
-So, I created the API for nodejs and I hope this module is useful for creating HTML5 validator on various
-IDEs for web developers.
+This lib provides API to validate HTML for nodeJS.
 
 ## How to use ?
-Just simple:
+Theare are 2 ways to validate HTML since version 2.0.0.
+
+### Legacy Style
+First one is a legacy style. It takes 3-7 secs to launch, then validate files,
+and finally, vnu.jar is closed. This takes time to launch, but you don't need
+to create an instance of "class" described below.
+
+#### How to call function
+Since version 2.0 callback funciton is replaced with
+[Q](https://github.com/kriskowal/q). Hence, you will need to replace callback
+function. For example, like this;
 
 ~~~~
-/*global exports, require*/
-(function (exports, require) {
-    var vnu = require("validator-nu");
-    // Put HTML data, not the name of the file.
-    vnu.validate("html here", function (result) {
-        // callback
-    });
-    // If you got validatornu was not found, set vnu path to 3rd parameter.
-    vnu.validate("html here", function (result) {
-        // callback
-    }, "/usr/bin/vnu.jar");
-}(exports, require));
+var vnu = require("validator-nu");
+// Put HTML data, not the name of the file.
+vnu.validate("html here").then(function (result) {
+    // callback
+    // This API returns messages array.
+}).catch(function (e) {
+    // Error callback
+});
+
+// If you got an error validatornu was not found,
+// set vnu path to 2nd parameter.
+vnu.validate("html here", "/path/to/vnu.jar").then(function (result) {
+    // callback
+    // This API returns messages array.
+}).catch(function (e) {
+  // Error callback
+});
+
+// To validate file(s), use validateFiles function
+vnu.validateFiles(
+  [
+    "./test.html",
+    "./test2.html"
+  ],
+  "/path/to/vnu.jar" // Of course this argument is optional. You need to include file name.
+).then(function (result) {
+    // callback
+    // This API returns messages array.
+}).catch(function (e) {
+  // Error callback
+});
+
+// If you have only a file to validate, this style is also acceptable:
+vnu.validateFiles(
+  "./test.html",
+  "/usr/bin/vnu.jar" // Of course this argument is optional. You need to include file name.
+).then(function (result) {
+    // callback
+    // This API returns messages array.
+}).catch(function (e) {
+  // Error callback
+});
+~~~~
+
+### Modern Style
+Calling ```validate``` or ```validateFiles```, vnu.jar is launched for every
+time. Therefore, those functions are very slow as described above.
+To avoid this problem, Launching vnu.jar as long-term process
+like HTTP service and Using Web Interface API are needed.
+(And these procedure is a little-bit weird...)
+
+Since version 2.0.0, There is a class named ```Vnu``` that launches vnu.jar
+as a HTTP server, and validate HTMLs.
+
+### How to call the functions
+Note that, you need to ensure the server is ready. Fortunately, ```open```
+method returns promise object and call ```resolve``` when the server is ready.
+For example, like this:
+
+~~~~
+vnu = new require("validator-nu").Vnu(
+  "/path/to/vnu.jar" // optional, needs to include file name
+);
+vnu.open().then(function(pid) {
+  console.log("validator server@pid:" + pid);
+  // Validate raw data
+  return vnu.validate("html input");
+}).then(function (result) {
+  // For result, check: https://github.com/validator/validator/wiki/Output:-JSON
+  // This API returns messages array.
+  console.log(result);
+  // To validate file(s), use validateFiles method:
+  return vnu.validateFiles(["test.html", "test2.html"]);
+}).then(function (result) {
+  /*
+   * The result is an object structured below:
+   * {
+   * "file path you input validateFiles. e.g. test.html in this example": [the corresponding messages array]
+   * "test2.html": [the corresponding messages array]
+   * }
+   */
+});
 ~~~~
 
 ## Exceptions
