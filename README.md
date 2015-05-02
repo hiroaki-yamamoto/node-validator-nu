@@ -52,7 +52,7 @@ vnu.validateFiles(
     "./test.html",
     "./test2.html"
   ],
-  "/path/to/vnu.jar" // Of course this argument is optional. You need to include file name.
+  "/path/to/vnu.jar" // Of course this argument is optional. You need to include the file name.
 ).then(function (result) {
     // callback
     // This API returns messages array.
@@ -63,7 +63,7 @@ vnu.validateFiles(
 // If you have only a file to validate, this style is also acceptable:
 vnu.validateFiles(
   "./test.html",
-  "/usr/bin/vnu.jar" // Of course this argument is optional. You need to include file name.
+  "/usr/bin/vnu.jar" // Of course this argument is optional. You need to include the file name.
 ).then(function (result) {
     // callback
     // This API returns messages array.
@@ -89,7 +89,7 @@ For example, like this:
 
 ~~~~
 vnu = new require("validator-nu").Vnu(
-  "/path/to/vnu.jar" // optional, needs to include file name
+  "/path/to/vnu.jar" // optional, needs to include the file name
 );
 vnu.open().then(function(pid) {
   console.log("validator server@pid:" + pid);
@@ -109,6 +109,19 @@ vnu.open().then(function(pid) {
    * "test2.html": [the corresponding messages array]
    * }
    */
+  console.log(result);
+  // If you have only a file to validate, you can also write like this:
+  return vnu.validateFiles("test.html");
+}).then(function (result) {
+  console.log(result);
+  // Don't forget to call close method, or runs validation server forever.
+  return vnu.close()
+}).then(function() {
+  // Do something after the server is closed
+}).catch(function (e) {
+  // Error callback
+  // EEEEEEESSSSSSCCCCAAAAAPPPEEEE!!!
+  process.exit(1);
 });
 ~~~~
 
