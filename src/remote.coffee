@@ -99,7 +99,7 @@ class Vnu
               result[file] = deepcopy validationResult
               if Object.keys(result).length is filesToPass.length
                 defer.resolve result
-          ).catch((e) -> throw e)
+          ).catch(defer.reject)
     catch e
       defer.reject e
     finally
