@@ -14,20 +14,24 @@ class Vnu
 
   "open": =>
     defer = q.defer()
-    server = @server = spawn(
-      path.join(process.env.JAVA_HOME or "/", "bin", "java"),
-      ["-cp", @vnuPath, "nu.validator.servlet.Main", @port.toString(10)]
-    )
-    @server.on "error", (err) ->
-      defer.reject(err)
-    @server.stderr.on "data", (data) ->
-      dataStr = data.toString()
-      if dataStr.match /INFO:oejs\.Server:main: Started @/
-        defer.resolve server.pid
-    @server.stderr.on "end", ->
-      if @verbose
-        console.log "The server is opened on port #{@port}"
-    return defer.promise
+    try
+      server = @server = spawn(
+        path.join(process.env.JAVA_HOME or "/", "bin", "java"),
+        ["-cp", @vnuPath, "nu.validator.servlet.Main", @port.toString(10)]
+      )
+      @server.on "error", (err) ->
+        defer.reject(err)
+      @server.stderr.on "data", (data) ->
+        dataStr = data.toString()
+        if dataStr.match /INFO:oejs\.Server:main: Started @/
+          defer.resolve server.pid
+      @server.stderr.on "end", ->
+        if @verbose
+          console.log "The server is opened on port #{@port}"
+    catch
+      defer.reject(e)
+    finally
+      return defer.promise
 
   "close": =>
     defer = q.defer()
