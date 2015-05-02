@@ -19,11 +19,11 @@ Theare are 2 ways to validate HTML since version 2.0.0.
 
 ### Legacy Style
 First one is a legacy style. It takes 3-7 secs to launch, then validate files,
-and finally, vnu.jar is closed. This takes time to launch, but you don't need
-to create an instance of "class" described below.
+and finally, vnu.jar is closed. This takes time to launch for each call,
+but you don't need to create an instance of "class" described below.
 
 #### How to call function
-Since version 2.0 callback funciton is replaced with
+Since version 2.0 callback function is replaced with
 [Q](https://github.com/kriskowal/q). Hence, you will need to replace callback
 function. For example, like this;
 
@@ -73,11 +73,11 @@ vnu.validateFiles(
 ~~~~
 
 ### Modern Style
-Calling ```validate``` or ```validateFiles```, vnu.jar is launched for every
-time. Therefore, those functions are very slow as described above.
-To avoid this problem, Launching vnu.jar as long-term process
-like HTTP service and Using Web Interface API are needed.
-(And these procedure is a little-bit weird...)
+Calling ```validate``` or ```validateFiles```, vnu.jar is launched for
+each calls. Therefore, those functions are very slow as described above.
+To avoid this problem, Launching vnu.jar as a long-term process
+like HTTP service and using Web Interface API are needed.
+(And these procedures are a little-bit weird...)
 
 Since version 2.0.0, There is a class named ```Vnu``` that launches vnu.jar
 as a HTTP server, and validate HTMLs.
@@ -91,6 +91,7 @@ For example, like this:
 vnu = new require("validator-nu").Vnu(
   "/path/to/vnu.jar" // optional, needs to include the file name
 );
+// open = launch server!
 vnu.open().then(function(pid) {
   console.log("validator server@pid:" + pid);
   // Validate raw data
@@ -113,6 +114,12 @@ vnu.open().then(function(pid) {
   // If you have only a file to validate, you can also write like this:
   return vnu.validateFiles("test.html");
 }).then(function (result) {
+  // The result is the same as above. i.e
+  /*
+    {
+      "test.html": [the corresponding message array]
+    }
+   */
   console.log(result);
   // Don't forget to call close method, or runs validation server forever.
   return vnu.close()
