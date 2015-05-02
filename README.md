@@ -1,4 +1,4 @@
-# Local VNu HTML 5 Validator API for nodejs
+# Local HTML 5 Validator NU API for nodejs
 
 [![Build Status](https://travis-ci.org/hiroaki-yamamoto/node-validator-nu.svg?branch=master)](https://travis-ci.org/hiroaki-yamamoto/node-validator-nu)
 [![devDependency Status](https://david-dm.org/hiroaki-yamamoto/node-validator-nu/dev-status.svg)](https://david-dm.org/hysoftware/node-validator-nu#info=devDependencies)
