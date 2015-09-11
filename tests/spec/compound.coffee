@@ -16,4 +16,4 @@ describe "Mixed files test cases", ->
       vnu.validateFiles([
         "./tests/data/valid.html",
         "./tests/data/invalid2.html"
-      ], process.env.VNU_BIN).then(cb).catch((err) -> throw err).finally done
+      ], process.env.VNU_BIN).then(cb).done (-> done()), done
