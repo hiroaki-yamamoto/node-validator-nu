@@ -12,8 +12,11 @@ module.exports = (files, vnuPath=helper.vnuJar) ->
       args
     )
     validator.stderr.on "data", (data) ->
-      defer.resolve JSON.parse(data).messages
+      try
+        defer.resolve JSON.parse(data).messages
+      catch e
+        defer.reject e
   catch e
-    validator.reject e
+    defer.reject e
   finally
     return defer.promise
