@@ -134,3 +134,10 @@ describe "Class mode validation tests", ->
                     ].join " "
                   ]
           ).catch((e) -> throw e).done (-> done()), done
+
+        it "Repeating a file name should be all right", (done) ->
+          files = [
+            "./tests/data/invalid.html"
+            "./tests/data/invalid.html"
+          ]
+          vnu.validateFiles(files).finally (-> done())

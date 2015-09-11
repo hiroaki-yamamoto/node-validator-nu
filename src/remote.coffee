@@ -104,6 +104,7 @@ class Vnu
 
   "validateFiles": (files) ->
     filesToPass = [].concat files
+    numResults = 0
     result = {}
     defer = q.defer()
     try
@@ -116,7 +117,8 @@ class Vnu
           ).then(
             (validationResult) ->
               result[file] = validationResult
-              if Object.keys(result).length is filesToPass.length
+              numResults++
+              if numResults is filesToPass.length
                 defer.resolve result
           ).catch(defer.reject)
     catch e
