@@ -39,7 +39,7 @@ class Vnu
       @server.stderr.on "end", ->
         if @verbose
           console.log "The server is opened on port #{@port}"
-    catch
+    catch e
       defer.reject(e)
     finally
       return defer.promise
