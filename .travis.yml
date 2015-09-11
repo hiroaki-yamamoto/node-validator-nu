@@ -6,3 +6,4 @@ node_js:
     - "iojs"
 jdk:
     - "openjdk7"
+sudo: false
