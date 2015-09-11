@@ -89,8 +89,11 @@ class Vnu
         res.setEncoding "utf8"
         res.on "data", (chunk) -> data.push chunk.toString()
         res.on "end", ->
-          data = JSON.parse(data.join("")).messages
-          defer.resolve data
+          try
+            data = JSON.parse(data.join("")).messages
+            defer.resolve data
+          catch e
+            defer.reject e
       req.on "error", defer.reject
       req.write input
       req.end()
