@@ -8,7 +8,7 @@ module.exports = (files, vnuPath=helper.vnuJar) ->
 
   try
     validator = spawn(
-      path.join(process.env.JAVA_HOME || "/", "bin", "java"),
+      helper.javaBin(),
       args
     )
     validator.stderr.on "data", (data) ->

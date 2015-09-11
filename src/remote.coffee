@@ -19,7 +19,7 @@ class Vnu
     stderrData = []
     try
       server = @server = spawn(
-        path.join(process.env.JAVA_HOME or "/", "bin", "java"),
+        helper.javaBin(),
         ["-cp", @vnuPath, "nu.validator.servlet.Main", @port.toString(10)]
       )
       @server.on "exit", (code, signal) ->
