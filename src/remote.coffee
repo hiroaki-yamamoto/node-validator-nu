@@ -4,47 +4,47 @@ q = require("q")
 http = require "http"
 fs = require "fs"
 deepcopy = require "deepcopy"
+freeport = require "freeport"
 
 helper = require "./helper"
 
 class Vnu
   constructor: (@vnuPath=helper.vnuJar, @verbose) ->
-    @port = Math.floor(Math.random()*100000)%65535
-    if @port < 1024
-      @port += 1024
     @server = null
 
   "open": =>
-    defer = q.defer()
-    stderrData = []
-    try
-      server = @server = spawn(
-        helper.javaBin(),
-        ["-cp", @vnuPath, "nu.validator.servlet.Main", @port.toString(10)]
-      )
-      @server.on "exit", (code, signal) ->
-        if stderrData
-          stderrData.forEach(process.stderr.write.bind(process.stderr))
-        if code == null
-          defer.reject(new Error("The server exited on signal " + signal))
-        else if code != 0
-          defer.reject(new Error("The server exited with code " + code))
-      @server.on "error", (err) ->
-        defer.reject(err)
-      @server.stderr.on "data", (data) ->
-        dataStr = data.toString()
-        if dataStr.match /INFO:oejs\.Server:main: Started @/
-          stderrData = null
-          defer.resolve server.pid
-        else if stderrData != null
-          stderrData.push(data)
-      @server.stderr.on "end", ->
-        if @verbose
-          console.log "The server is opened on port #{@port}"
-    catch e
-      defer.reject(e)
-    finally
-      return defer.promise
+    q.nfcall(freeport).then (port) =>
+      @port = port
+      defer = q.defer()
+      stderrData = []
+      try
+        server = @server = spawn(
+          helper.javaBin(),
+          ["-cp", @vnuPath, "nu.validator.servlet.Main", port.toString(10)]
+        )
+        @server.on "exit", (code, signal) ->
+          if stderrData
+            stderrData.forEach(process.stderr.write.bind(process.stderr))
+          if code == null
+            defer.reject(new Error("The server exited on signal " + signal))
+          else if code != 0
+            defer.reject(new Error("The server exited with code " + code))
+        @server.on "error", (err) ->
+          defer.reject(err)
+        @server.stderr.on "data", (data) ->
+          dataStr = data.toString()
+          if dataStr.match /INFO:oejs\.Server:main: Started @/
+            stderrData = null
+            defer.resolve server.pid
+          else if stderrData != null
+            stderrData.push(data)
+        @server.stderr.on "end", ->
+          if @verbose
+            console.log "The server is opened on port #{@port}"
+      catch e
+        defer.reject(e)
+      finally
+        return defer.promise
 
   "close": =>
     defer = q.defer()
