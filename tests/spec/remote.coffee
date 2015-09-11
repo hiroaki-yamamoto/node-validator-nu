@@ -3,7 +3,7 @@ describe "Class mode validation tests", ->
   q = require "q"
   fs = require "fs"
   Vnu = require("../../src/validatornu").Vnu
-  vnu = new Vnu(process.env.VNU_BIN)
+  vnu = new Vnu()
 
   before (done) ->
     vnu.open().then(
