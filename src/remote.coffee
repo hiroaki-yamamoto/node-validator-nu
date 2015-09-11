@@ -3,7 +3,6 @@ path = require "path"
 q = require("q")
 http = require "http"
 fs = require "fs"
-deepcopy = require "deepcopy"
 freeport = require "freeport"
 
 helper = require "./helper"
@@ -113,7 +112,7 @@ class Vnu
             (input) => @validate input
           ).then(
             (validationResult) ->
-              result[file] = deepcopy validationResult
+              result[file] = validationResult
               if Object.keys(result).length is filesToPass.length
                 defer.resolve result
           ).catch(defer.reject)
