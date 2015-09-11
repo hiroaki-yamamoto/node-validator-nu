@@ -5,8 +5,10 @@ http = require "http"
 fs = require "fs"
 deepcopy = require "deepcopy"
 
+helper = require "./helper"
+
 class Vnu
-  constructor: (@vnuPath="/usr/share/java/validatornu/vnu.jar", @verbose) ->
+  constructor: (@vnuPath=helper.vnuJar, @verbose) ->
     @port = Math.floor(Math.random()*100000)%65535
     if @port < 1024
       @port += 1024

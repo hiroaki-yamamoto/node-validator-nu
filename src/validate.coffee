@@ -1,4 +1,6 @@
-module.exports = (input, vnuPath="/usr/share/java/validatornu/vnu.jar")->
+helper = require "./helper"
+
+module.exports = (input, vnuPath=helper.vnuJar)->
   spawn = require("child_process").spawn
   path = require "path"
   defer = require("q").defer()

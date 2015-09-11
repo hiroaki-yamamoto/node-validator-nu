@@ -1,4 +1,6 @@
-module.exports = (files, vnuPath="/usr/share/java/validatornu/vnu.jar") ->
+helper = require "./helper"
+
+module.exports = (files, vnuPath=helper.vnuJar) ->
   spawn = require("child_process").spawn
   path = require "path"
   args = ["-jar", vnuPath, "--format", "json"].concat files
