@@ -28,6 +28,7 @@
     "gulp-mocha": "latest"
   },
   "scripts": {
-    "test": "node_modules/gulp/bin/gulp.js test"
+    "prepublish": "gulp compile",
+    "test": "gulp test"
   }
 }
