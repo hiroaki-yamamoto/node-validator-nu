@@ -9,6 +9,9 @@
     "email": "admin@hysoftware.net",
     "url" : "https://hysoftware.net/"
   },
+  "contributors": [
+    "Martin von Gagern <Martin.vGagern@gmx.net>"
+  ],
   "main": "./lib/validatornu.js",
   "dependencies": {
     "q": "latest",
