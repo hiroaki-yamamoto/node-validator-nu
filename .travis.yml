@@ -15,7 +15,7 @@ after_success:
 
 deploy:
   provider: releases
-  api-key: ae7b3b60fa3f154ffef0f6b59bd07eec482058ab
+  api_key: 5fa770d40bb0f73ab43befa2d65bfbe7db81bcc8
   skip_cleanup: true
   on:
     branch: master
