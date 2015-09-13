@@ -2,7 +2,7 @@
   "name": "validator-nu",
   "description": "HTML5 validator using validator.nu, but not remotely",
   "repository": "https://github.com/hysoftware/node-validator-nu.git",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "license": "MIT",
   "author": {
     "name": "Hiroaki Yamamoto",

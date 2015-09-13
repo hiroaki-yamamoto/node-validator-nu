@@ -2,24 +2,23 @@ language: node_js
 sudo: false
 
 node_js:
-    - "0.12"
-    - "0.11"
-    - "0.10"
-    - "iojs"
+  - '0.12'
+  - '0.11'
+  - '0.10'
+  - iojs
 
 jdk:
-    - "openjdk7"
+  - openjdk7
 
 after_success:
-  - "npm prepublish"
+  - npm prepublish
 
 deploy:
   provider: releases
-  api_key: 5fa770d40bb0f73ab43befa2d65bfbe7db81bcc8
-  skip_cleanup: true
+  api_key:
+    secure: SFpo00EmClWD7D83oFLxUNYp9N8vHH2U6fIGAf3GYeTPjc1B1ajM8AP76PgkNWdOEPjNAaW8E3IvqE1xiDR65aSyWwoLz9L6fieywXCjCdno8Pzmdsq3sWmTnumeSHFgWN3OOilPmtMTXxPPsGOU+UkE6rrgvjwFQCZC+7Ofn4Y=
   on:
-    branch: master
-    tags: true
+    repo: hiroaki-yamamoto/node-validator-nu
 
 after_deploy:
-  - "npm publish"
+  - npm publish
