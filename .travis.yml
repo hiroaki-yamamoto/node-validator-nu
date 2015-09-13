@@ -11,7 +11,7 @@ jdk:
   - openjdk7
 
 after_success:
-  - npm prepublish
+  - npm run prepublish
 
 deploy:
   provider: releases
@@ -21,4 +21,4 @@ deploy:
     repo: hiroaki-yamamoto/node-validator-nu
 
 after_deploy:
-  - npm run publish
+  - npm publish
