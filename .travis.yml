@@ -19,4 +19,7 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
-    tags: false
+    tags: true
+
+after_deploy:
+  - "npm publish"
