@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/hiroaki-yamamoto/node-validator-nu.svg?branch=master)](https://travis-ci.org/hiroaki-yamamoto/node-validator-nu)
 [![devDependency Status](https://david-dm.org/hiroaki-yamamoto/node-validator-nu/dev-status.svg)](https://david-dm.org/hysoftware/node-validator-nu#info=devDependencies)
-[![Code Climate](https://codeclimate.com/github/hiroaki-yamamoto/node-validator-nu/badges/gpa.svg)](https://codeclimate.com/github/hysoftware/node-validator-nu)
 
 [![NPM](https://nodei.co/npm/validator-nu.png?downloads=true&downloadRank=true)](https://nodei.co/npm/validator-nu/)
 
@@ -27,7 +26,7 @@ Since version 2.0 callback function is replaced with
 [Q](https://github.com/kriskowal/q). Hence, you will need to replace callback
 function. For example, like this;
 
-~~~~
+```node
 var vnu = require("validator-nu");
 // Put HTML data, not the name of the file.
 vnu.validate("html here").then(function (result) {
@@ -70,7 +69,7 @@ vnu.validateFiles(
 }).catch(function (e) {
   // Error callback
 });
-~~~~
+```
 
 ### Modern Style
 Calling ```validate``` or ```validateFiles```, vnu.jar is launched for
@@ -87,7 +86,7 @@ Note that, you need to ensure the server is ready. Fortunately, ```open```
 method returns promise object and call ```resolve``` when the server is ready.
 For example, like this:
 
-~~~~
+```node
 vnu = new require("validator-nu").Vnu(
   "/path/to/vnu.jar" // optional, needs to include the file name
 );
@@ -130,7 +129,7 @@ vnu.open().then(function(pid) {
   // EEEEEEESSSSSSCCCCAAAAAPPPEEEE!!!
   process.exit(1);
 });
-~~~~
+```
 
 ## Exceptions
 Because this API uses [child_process.spawn](http://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options) and
