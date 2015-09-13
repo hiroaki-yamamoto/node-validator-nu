@@ -15,23 +15,22 @@
   "main": "./lib/validatornu.js",
   "dependencies": {
     "freeport": "^1.0.5",
-    "q": "latest"
-  },
-  "devDependencies": {
-    "grunt": "latest",
-    "jslint": "latest",
-    "mocha": "latest",
-    "chai": "latest",
-    "coffeelint": "latest",
-    "coffee-script": "latest",
+    "q": "latest",
     "gulp": "latest",
     "gulp-coffeelint": "latest",
     "gulp-coffee": "latest",
     "gulp-sourcemaps": "latest",
     "gulp-mocha": "latest"
   },
+  "devDependencies": {
+    "jslint": "latest",
+    "mocha": "latest",
+    "chai": "latest",
+    "coffeelint": "latest",
+    "coffee-script": "latest",
+  },
   "scripts": {
-    "prepublish": "gulp compile",
+    "install": "./node_modules/gulp/bin/gulp compile",
     "test": "gulp test"
   }
 }
