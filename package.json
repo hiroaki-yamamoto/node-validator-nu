@@ -16,6 +16,7 @@
   "dependencies": {
     "freeport": "^1.0.5",
     "q": "latest",
+    "coffee-script": "latest",
     "gulp": "latest",
     "gulp-coffeelint": "latest",
     "gulp-coffee": "latest",
@@ -26,8 +27,7 @@
     "jslint": "latest",
     "mocha": "latest",
     "chai": "latest",
-    "coffeelint": "latest",
-    "coffee-script": "latest"
+    "coffeelint": "latest"
   },
   "scripts": {
     "install": "./node_modules/gulp/bin/gulp.js compile",
