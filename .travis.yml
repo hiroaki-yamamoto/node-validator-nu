@@ -15,6 +15,7 @@ after_success:
 
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: SFpo00EmClWD7D83oFLxUNYp9N8vHH2U6fIGAf3GYeTPjc1B1ajM8AP76PgkNWdOEPjNAaW8E3IvqE1xiDR65aSyWwoLz9L6fieywXCjCdno8Pzmdsq3sWmTnumeSHFgWN3OOilPmtMTXxPPsGOU+UkE6rrgvjwFQCZC+7Ofn4Y=
   on:
