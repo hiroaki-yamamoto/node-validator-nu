@@ -21,4 +21,4 @@ deploy:
     repo: hiroaki-yamamoto/node-validator-nu
 
 after_deploy:
-  - npm publish
+  - npm run publish
