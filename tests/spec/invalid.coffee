@@ -8,7 +8,7 @@ describe "Invalid case tests", ->
   describe "Raw data test", ->
     it "The error should be returned as an object", (done) ->
       q.nfcall(fs.readFile, "./tests/data/invalid.html").then(
-        (result) -> vnu.validate(result, process.env.VNU_BIN)
+        (result) -> vnu.validate(result)
       ).then(
         (result) ->
           expect(result).eql [
@@ -30,7 +30,7 @@ describe "Invalid case tests", ->
   describe "Single File", ->
     it "The error should be returned as an object", (done) ->
       vnu.validateFiles(
-        "./tests/data/invalid.html", process.env.VNU_BIN
+        "./tests/data/invalid.html"
       ).then((result) ->
         expect(result[0].url).to.match /tests\/data\/invalid\.html$/
         delete result[0].url
@@ -86,6 +86,6 @@ describe "Invalid case tests", ->
       vnu.validateFiles([
         "./tests/data/invalid.html"
         "./tests/data/invalid2.html"
-      ], process.env.VNU_BIN).then(cb).catch(
+      ]).then(cb).catch(
         (err) -> throw err
       ).done (-> done()), done

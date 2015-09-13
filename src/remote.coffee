@@ -3,35 +3,47 @@ path = require "path"
 q = require("q")
 http = require "http"
 fs = require "fs"
-deepcopy = require "deepcopy"
+freeport = require "freeport"
+
+helper = require "./helper"
 
 class Vnu
-  constructor: (@vnuPath="/usr/share/java/validatornu/vnu.jar", @verbose) ->
-    @port = Math.floor(Math.random()*100000)%65535
-    if @port < 1024
-      @port += 1024
+  constructor: (@vnuPath=helper.vnuJar, @verbose) ->
     @server = null
 
   "open": =>
-    defer = q.defer()
-    try
-      server = @server = spawn(
-        path.join(process.env.JAVA_HOME or "/", "bin", "java"),
-        ["-cp", @vnuPath, "nu.validator.servlet.Main", @port.toString(10)]
-      )
-      @server.on "error", (err) ->
-        defer.reject(err)
-      @server.stderr.on "data", (data) ->
-        dataStr = data.toString()
-        if dataStr.match /INFO:oejs\.Server:main: Started @/
-          defer.resolve server.pid
-      @server.stderr.on "end", ->
-        if @verbose
-          console.log "The server is opened on port #{@port}"
-    catch
-      defer.reject(e)
-    finally
-      return defer.promise
+    q.nfcall(freeport).then (port) =>
+      @port = port
+      defer = q.defer()
+      stderrData = []
+      try
+        server = @server = spawn(
+          helper.javaBin(),
+          ["-cp", @vnuPath, "nu.validator.servlet.Main", port.toString(10)]
+        )
+        @server.on "exit", (code, signal) ->
+          if stderrData
+            stderrData.forEach(process.stderr.write.bind(process.stderr))
+          if code == null
+            defer.reject(new Error("The server exited on signal " + signal))
+          else if code != 0
+            defer.reject(new Error("The server exited with code " + code))
+        @server.on "error", (err) ->
+          defer.reject(err)
+        @server.stderr.on "data", (data) ->
+          dataStr = data.toString()
+          if dataStr.match /INFO:oejs\.Server:main: Started @/
+            stderrData = null
+            defer.resolve server.pid
+          else if stderrData != null
+            stderrData.push(data)
+        @server.stderr.on "end", ->
+          if @verbose
+            console.log "The server is opened on port #{@port}"
+      catch e
+        defer.reject(e)
+      finally
+        return defer.promise
 
   "close": =>
     defer = q.defer()
@@ -77,8 +89,11 @@ class Vnu
         res.setEncoding "utf8"
         res.on "data", (chunk) -> data.push chunk.toString()
         res.on "end", ->
-          data = JSON.parse(data.join("")).messages
-          defer.resolve data
+          try
+            data = JSON.parse(data.join("")).messages
+            defer.resolve data
+          catch e
+            defer.reject e
       req.on "error", defer.reject
       req.write input
       req.end()
@@ -89,6 +104,7 @@ class Vnu
 
   "validateFiles": (files) ->
     filesToPass = [].concat files
+    numResults = 0
     result = {}
     defer = q.defer()
     try
@@ -100,8 +116,9 @@ class Vnu
             (input) => @validate input
           ).then(
             (validationResult) ->
-              result[file] = deepcopy validationResult
-              if Object.keys(result).length is filesToPass.length
+              result[file] = validationResult
+              numResults++
+              if numResults is filesToPass.length
                 defer.resolve result
           ).catch(defer.reject)
     catch e

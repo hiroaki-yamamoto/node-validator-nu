@@ -3,7 +3,7 @@ describe "Class mode validation tests", ->
   q = require "q"
   fs = require "fs"
   Vnu = require("../../src/validatornu").Vnu
-  vnu = new Vnu(process.env.VNU_BIN)
+  vnu = new Vnu()
 
   before (done) ->
     vnu.open().then(
@@ -134,3 +134,10 @@ describe "Class mode validation tests", ->
                     ].join " "
                   ]
           ).catch((e) -> throw e).done (-> done()), done
+
+        it "Repeating a file name should be all right", (done) ->
+          files = [
+            "./tests/data/invalid.html"
+            "./tests/data/invalid.html"
+          ]
+          vnu.validateFiles(files).finally (-> done())

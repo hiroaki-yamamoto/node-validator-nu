@@ -1,4 +1,6 @@
-module.exports = (files, vnuPath="/usr/share/java/validatornu/vnu.jar") ->
+helper = require "./helper"
+
+module.exports = (files, vnuPath=helper.vnuJar) ->
   spawn = require("child_process").spawn
   path = require "path"
   args = ["-jar", vnuPath, "--format", "json"].concat files
@@ -6,12 +8,15 @@ module.exports = (files, vnuPath="/usr/share/java/validatornu/vnu.jar") ->
 
   try
     validator = spawn(
-      path.join(process.env.JAVA_HOME || "/", "bin", "java"),
+      helper.javaBin(),
       args
     )
     validator.stderr.on "data", (data) ->
-      defer.resolve JSON.parse(data).messages
+      try
+        defer.resolve JSON.parse(data).messages
+      catch e
+        defer.reject e
   catch e
-    validator.reject e
+    defer.reject e
   finally
     return defer.promise

@@ -7,12 +7,15 @@
   "author": {
     "name": "Hiroaki Yamamoto",
     "email": "admin@hysoftware.net",
-    "url" : "https://hysoftware.net/"
+    "url": "https://hysoftware.net/"
   },
+  "contributors": [
+    "Martin von Gagern <Martin.vGagern@gmx.net>"
+  ],
   "main": "./lib/validatornu.js",
   "dependencies": {
-    "q": "latest",
-    "deepcopy": "latest"
+    "freeport": "^1.0.5",
+    "q": "latest"
   },
   "devDependencies": {
     "grunt": "latest",
@@ -28,6 +31,7 @@
     "gulp-mocha": "latest"
   },
   "scripts": {
-    "test": "node_modules/gulp/bin/gulp.js test"
+    "prepublish": "gulp compile",
+    "test": "gulp test"
   }
 }
