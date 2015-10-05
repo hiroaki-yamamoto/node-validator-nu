@@ -14,6 +14,8 @@ jdk:
 before_deploy:
   - npm run compile
   - sed -i -e "/\/lib\//D" .gitignore
+  - git config --global user.email "test@example.com"
+  - git config --global user.name "Mr. Travis CI"
   - git add .
   - git commit -m "Commit to make tarball"
   - git archive --format=tar.gz ${TRAVIS_TAG} > ./${TRAVIS_TAG}-compiled.tar.gz
