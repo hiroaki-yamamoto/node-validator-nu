@@ -2,7 +2,7 @@
   "name": "validator-nu",
   "description": "HTML5 validator using validator.nu, but not remotely",
   "repository": "https://github.com/hysoftware/node-validator-nu.git",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "license": "MIT",
   "author": {
     "name": "Hiroaki Yamamoto",
@@ -30,7 +30,7 @@
     "chai": "latest"
   },
   "scripts": {
-    "install": "./node_modules/gulp/bin/gulp.js compile",
+    "compile": "./node_modules/gulp/bin/gulp.js compile",
     "test": "./node_modules/gulp/bin/gulp.js test"
   }
 }
