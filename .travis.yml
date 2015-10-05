@@ -12,11 +12,11 @@ jdk:
   - openjdk7
 
 before_deploy:
-  - npm compile
+  - npm run compile
   - sed -i -e "/\/lib\//D" .gitignore
   - git add .
   - git commit -m "Commit to make tarball"
-  - git archive --format=tar.gz ${TRAVIS_TAG} > ./${TRAVIS_TAG}.tar.gz
+  - git archive --format=tar.gz ${TRAVIS_TAG} > ./${TRAVIS_TAG}-compiled.tar.gz
 
 deploy:
   - provider: releases
