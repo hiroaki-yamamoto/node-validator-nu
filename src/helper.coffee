@@ -1,4 +1,5 @@
 path = require "path"
+dargs = require "dargs"
 
 module.exports =
 
@@ -9,3 +10,16 @@ module.exports =
       path.join(process.env.JAVA_HOME, "bin", "java")
     else
       "java"
+
+  genArgs: (args={}, xprefixed, __private) ->
+    result = []
+    exclude = if __private then undefined else ["format"]
+    if xprefixed
+      Object.keys(args).forEach (key) ->
+        result.push "-X#{key}#{args[key]}"
+      return result
+    preResult = dargs(args, (
+      "excludes": exclude
+    )).map (arg) -> arg.split "="
+    preResult.forEach (arg) -> result = result.concat arg
+    return result

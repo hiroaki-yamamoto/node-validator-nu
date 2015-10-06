@@ -8,19 +8,21 @@ freeport = require "freeport"
 helper = require "./helper"
 
 class Vnu
-  constructor: (@vnuPath=helper.vnuJar, @verbose) ->
+  constructor: (@xargs={}, @args={}, @vnuPath=helper.vnuJar, @verbose) ->
     @server = null
 
   "open": =>
     q.nfcall(freeport).then (port) =>
       @port = port
+      argsToPass = helper.genArgs(@xargs, true).concat(
+        "-cp", @vnuPath,
+        "nu.validator.servlet.Main", port.toString(10),
+        helper.genArgs(@args),
+      )
       defer = q.defer()
       stderrData = []
       try
-        server = @server = spawn(
-          helper.javaBin(),
-          ["-cp", @vnuPath, "nu.validator.servlet.Main", port.toString(10)]
-        )
+        server = @server = spawn helper.javaBin(), argsToPass
         @server.on "exit", (code, signal) ->
           if stderrData
             stderrData.forEach(process.stderr.write.bind(process.stderr))
