@@ -11,9 +11,11 @@ module.exports =
     else
       "java"
 
-  genArgs: (args={}, xprefixed, __private) ->
+  genArgs: (args, xprefixed, __private) ->
     result = []
     exclude = if __private then undefined else ["format"]
+    if args is undefined
+      args = {}
     if xprefixed
       Object.keys(args).forEach (key) ->
         result.push "-X#{key}#{args[key]}"

@@ -37,8 +37,13 @@ vnu.validate("html here").then(function (result) {
 });
 
 // If you got an error validatornu was not found,
-// set vnu path to 2nd parameter.
-vnu.validate("html here", "/path/to/vnu.jar").then(function (result) {
+// set vnu path to 4th parameter.
+vnu.validate(
+    "html here",
+    undefined,
+    undefined,
+    "/path/to/vnu.jar"
+).then(function (result) {
     // callback
     // This API returns messages array.
 }).catch(function (e) {
@@ -62,6 +67,8 @@ vnu.validateFiles(
 // If you have only a file to validate, this style is also acceptable:
 vnu.validateFiles(
   "./test.html",
+  undefined,
+  undefined,
   "/usr/bin/vnu.jar" // Of course this argument is optional. You need to include the file name.
 ).then(function (result) {
     // callback
@@ -88,6 +95,8 @@ For example, like this:
 
 ```node
 vnu = new require("validator-nu").Vnu(
+  undefined,
+  undefined,
   "/path/to/vnu.jar" // optional, needs to include the file name
 );
 // open = launch server!
@@ -129,6 +138,58 @@ vnu.open().then(function(pid) {
   // EEEEEEESSSSSSCCCCAAAAAPPPEEEE!!!
   process.exit(1);
 });
+```
+
+## Non-standard parameter for Java
+As of 2.1.13, you can specify Non-standard parameters for Java (e.g. X prefixed option)
+as 2nd parameter for legacy version, and as 1st parameter for "class" version.
+
+For example, like this:
+
+```node
+vnu.validate("html here", {"ss": "512k"}).then(function (result) {
+    // callback
+    // This API returns messages array.
+}).catch(function (e) {
+    // Error callback
+});
+
+vnu.validateFiles("./test.html", {"ss": "512k"}).then(function (result) {
+    // callback
+    // This API returns messages array.
+}).catch(function (e) {
+  // Error callback
+});
+
+vnu = new require("validator-nu").Vnu(
+  {"ss": "512k"},
+  undefined,
+  "/path/to/vnu.jar" // optional, needs to include the file name
+);
+```
+
+## Application-specific parameter
+As of 2.1.13, you can ALSO specify application-specific commandline arguments like this example:
+```node
+vnu.validate("html here", undefined, {"test": "test"}).then(function (result) {
+    // callback
+    // This API returns messages array.
+}).catch(function (e) {
+    // Error callback
+});
+
+vnu.validateFiles("./test.html", undefined, {"test": "test"}).then(function (result) {
+    // callback
+    // This API returns messages array.
+}).catch(function (e) {
+  // Error callback
+});
+
+vnu = new require("validator-nu").Vnu(
+  undefined,
+  {"test": "test"},
+  "/path/to/vnu.jar" // optional, needs to include the file name
+);
 ```
 
 ## Exceptions
