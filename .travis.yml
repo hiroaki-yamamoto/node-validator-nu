@@ -18,13 +18,13 @@ before_deploy:
   - git config --global user.name "Mr. Travis CI"
   - git add .
   - git commit -m "Commit to make tarball"
-  - git archive --format=tar.gz HEAD > ./${TRAVIS_TAG}-compiled.tar.gz
+  - git archive --format=tar.gz --prefix=package/ -o ${TRAVIS_TAG}-compiled.tar.gz HEAD
 
 deploy:
   - provider: releases
     api_key:
       secure: NReNxZYQ0IO5O/1axCc81WjrPZtIbL0iXCxm3YqE9N5UaNbEGPqCoHjrcMRu2WfCrDclNx/OJ286lq0U/XoY5AkKV9D/ENh2I+vHSNesM1v/3+GsNDbypFjebpgnkFPgut0hQMea/mZeJO8Y7dgfDJqb8uT8gc6GsNPD+SXWUWw=
-    file: "./${TRAVIS_TAG}-compiled.tar.gz"
+    file: "${TRAVIS_TAG}-compiled.tar.gz"
     skip_cleanup: true
     on:
       repo: hiroaki-yamamoto/node-validator-nu
