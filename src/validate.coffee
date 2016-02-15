@@ -15,7 +15,12 @@ module.exports = (input, xargs={}, args={}, vnuPath=helper.vnuJar) ->
     validator.stderr.on "data", (data) ->
       result.push data
     validator.stderr.on "end", ->
-      defer.resolve JSON.parse(result.join("")).messages
+      result = result.join("")
+      try
+        defer.resolve JSON.parse(result).messages
+      catch e
+        e.message += "\n" + result
+        defer.reject e
     validator.stdin.write input
     validator.stdin.end()
   catch e
