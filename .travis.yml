@@ -14,7 +14,7 @@ cache:
     - "node_modules"
 
 jdk:
-  - openjdk7
+  - openjdk8
 
 before_deploy:
   - npm run compile
