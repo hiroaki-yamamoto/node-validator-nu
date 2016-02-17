@@ -1,7 +1,5 @@
 language: node_js
 
-sudo: false
-
 node_js:
   - '5.5'
   - '5.0'
@@ -13,11 +11,11 @@ cache:
   directories:
     - "node_modules"
 
-jdk:
-  - oraclejdk8
+env:
+  - "JAVA_HOME=/usr/lib/jvm/java-8-openjdk"
 
 before_script:
-  - jdk_switcher use oraclejdk8
+  - "sudo apt-get install openjdk-8-jdk openjdk-8-jre"
   - "java -version"
 
 before_deploy:
