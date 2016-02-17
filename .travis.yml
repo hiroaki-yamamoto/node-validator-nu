@@ -13,17 +13,8 @@ cache:
   directories:
     - "node_modules"
 
-env:
-  - "JAVA_HOME=/usr/lib/jvm/java-8-openjdk"
-
-java:
-  - openjdk8
-
-addons:
-  apt:
-    packages:
-      - openjdk-8-jdk
-      - openjdk-8-jre
+jdk:
+  - oraclejdk8
 
 before_script:
   - ls /usr/lib/jvm/
