@@ -16,6 +16,9 @@ cache:
 env:
   - "JAVA_HOME=/usr/lib/jvm/java-8-openjdk"
 
+java:
+  - openjdk8
+
 addons:
   apt:
     packages:
@@ -23,6 +26,7 @@ addons:
       - openjdk-8-jre
 
 before_script:
+  - ls /usr/lib/jvm/
   - "java -version"
 
 before_deploy:
