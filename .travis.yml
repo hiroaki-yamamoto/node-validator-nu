@@ -14,9 +14,10 @@ cache:
     - "node_modules"
 
 jdk:
-  - openjdk8
+  - oraclejdk8
 
 before_script:
+  - jdk_switcher use oraclejdk8
   - "java -version"
 
 before_deploy:
