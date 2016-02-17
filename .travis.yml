@@ -14,7 +14,10 @@ cache:
     - "node_modules"
 
 jdk:
-  - oraclejdk8
+  - openjdk8
+
+before_script:
+  - "java -version"
 
 before_deploy:
   - npm run compile
