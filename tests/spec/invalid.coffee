@@ -89,3 +89,24 @@ describe "Invalid case tests", ->
       ]).then(cb).catch(
         (err) -> throw err
       ).done (-> done()), done
+
+describe "Print Java error message", ->
+  it "when `validate()` called", (done) ->
+    vnu.validate("<html/>", ("ss": "64"))
+      .catch (err) ->
+        expect(err).to.be.an.instanceof(SyntaxError)
+        expect(err.message).to.match(
+          /^Unexpected token I\nInvalid thread stack size: -Xss64\n/
+        )
+        done()
+      .done (-> ;), done
+
+  it "when `validateFiles()` called", (done) ->
+    vnu.validateFiles(["./tests/data/invalid.html"], ("ss": "32"))
+      .catch (err) ->
+        expect(err).to.be.an.instanceof(SyntaxError)
+        expect(err.message).to.match(
+          /^Unexpected token I\nInvalid thread stack size: -Xss32\n/
+        )
+        done()
+      .done (-> ;), done
