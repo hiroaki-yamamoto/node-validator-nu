@@ -91,22 +91,18 @@ describe "Invalid case tests", ->
       ).done (-> done()), done
 
 describe "Print Java error message", ->
-  it "when `validate()` called", (done) ->
+  it "The message should be printed when `validate()` called", ->
     vnu.validate("<html/>", ("ss": "64"))
       .catch (err) ->
         expect(err).to.be.an.instanceof(SyntaxError)
         expect(err.message).to.match(
-          /^Unexpected token I\nInvalid thread stack size: -Xss64\n/
+          /^Unexpected token [\s\S]+Invalid thread stack size: -Xss64/
         )
-        done()
-      .done (-> ;), done
 
-  it "when `validateFiles()` called", (done) ->
+  it "The message should be printed when `validateFiles()` called", ->
     vnu.validateFiles(["./tests/data/invalid.html"], ("ss": "32"))
       .catch (err) ->
         expect(err).to.be.an.instanceof(SyntaxError)
         expect(err.message).to.match(
-          /^Unexpected token I\nInvalid thread stack size: -Xss32\n/
+          /^Unexpected token [\s\S]+Invalid thread stack size: -Xss32/
         )
-        done()
-      .done (-> ;), done
