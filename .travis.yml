@@ -4,11 +4,13 @@ sudo: false
 
 addons:
   apt:
-    sources:
-      - ppa:webupd8team/java
     packages:
       - oracle-java8-installer
-      - oracle-java8-set-default
+
+env:
+  # Honestly I don't like this hack.
+  global:
+    - JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 node_js:
   - '5.5'
@@ -44,7 +46,7 @@ deploy:
       repo: hiroaki-yamamoto/node-validator-nu
       tags: true
   - provider: npm
-    email: admin@hysoftware.net
+    email: hiroaki@hysoftware.net
     skip_cleanup: true
     api_key:
       secure: nO9LdBsCzwF/lvTQJ6zyuZTlhk85iGN5zftoHoNvQVGXbPvR8Qb9yZNyzz+X2svPagouloRJ952zu+XXnlG9J3SdcYa9283bGQLXVcKxmCrSzTnrPhRz+oCCebTGpEjZtz7FXu6+LHjxX5JhLF7OmovOUv309d33t+u6KYtodcI=
