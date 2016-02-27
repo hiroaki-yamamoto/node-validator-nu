@@ -8,6 +8,7 @@ addons:
       - ppa:webupd8team/java
     packages:
       - oracle-java8-installer
+      - oracle-java8-set-default
 
 node_js:
   - '5.5'
@@ -19,9 +20,6 @@ node_js:
 cache:
   directories:
     - "node_modules"
-
-jdk:
-  - oraclejdk8
 
 before_script:
   - ls /usr/lib/jvm/
