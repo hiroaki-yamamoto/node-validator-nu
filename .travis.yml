@@ -3,13 +3,22 @@ language: node_js
 sudo: false
 
 node_js:
-  - '0.12'
-  - '0.11'
-  - '0.10'
+  - '5.5'
+  - '5.0'
+  - '4.1'
+  - '4.0'
   - iojs
+
+cache:
+  directories:
+    - "node_modules"
 
 jdk:
   - oraclejdk8
+
+before_script:
+  - ls /usr/lib/jvm/
+  - "java -version"
 
 before_deploy:
   - npm run compile

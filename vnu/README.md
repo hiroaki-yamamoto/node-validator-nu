@@ -52,8 +52,8 @@ You can use the `vnu.jar` HTML checker as an executable for command-line
 checking of documents by invoking it like this:
 
       java -jar ~/vnu.jar [--errors-only] [--no-stream]
-           [--format gnu|xml|json|text] [--help] [--html] [--verbose]
-           [--version] FILES
+           [--format gnu|xml|json|text] [--help] [--html] [--skip-non-html]
+           [--verbose] [--version] FILES
 
 **Note:** In these instructions, replace _"~/vnu.jar"_ with the actual path to
 the file on your system.
@@ -108,7 +108,7 @@ executable provides the following options:
 
     possible values: "gnu", "xml", "json", "text" [see information at URL below]
 
-    https://wiki.whatwg.org/wiki/Validator.nu_Common_Input_Parameters#out
+    https://github.com/validator/validator/wiki/Service:-Common-parameters#out
 
 #### --help
 
@@ -276,9 +276,9 @@ ones by setting the value of the `nu.validator.client.level` system property to
 
 Most of the properties listed below map to the validator.nu common input
 parameters documented at
-[wiki.whatwg.org/wiki/Validator.nu_Common_Input_Parameters][25].
+[github.com/validator/validator/wiki/Service:-Common-parameters][25].
 
-   [25]: https://wiki.whatwg.org/wiki/Validator.nu_Common_Input_Parameters
+   [25]: https://github.com/validator/validator/wiki/Service:-Common-parameters
 
 #### nu.validator.client.host
 
@@ -314,7 +314,7 @@ parameters documented at
 
     possible values: [see information at URL below]
 
-    https://wiki.whatwg.org/wiki/Validator.nu_Common_Input_Parameters#parser"
+    https://github.com/validator/validator/wiki/Service:-Common-parameters#parser
 
 #### nu.validator.client.charset
 
@@ -336,7 +336,7 @@ parameters documented at
 
     possible values: [see information at URL below]
 
-    https://wiki.whatwg.org/wiki/Validator.nu_Common_Input_Parameters#out"
+    https://github.com/validator/validator/wiki/Service:-Common-parameters#out
 
 #### nu.validator.client.asciiquotes
 
@@ -360,11 +360,11 @@ open `http://localhost:8888/` in a Web browser to use the checker Web UI.
 
 For example:
 
-    * `export JAVA_HOME=/usr/lib/jvm/java-6-openjdk` (older Ubuntu)
+    * export JAVA_HOME=/usr/lib/jvm/java-6-openjdk (older Ubuntu)
 
-    * `export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64` (newer Ubuntu)
+    * export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 (newer Ubuntu)
 
-    * `export JAVA_HOME=$(/usr/libexec/java_home)` (Mac OS X)
+    * export JAVA_HOME=$(/usr/libexec/java_home) (Mac OS X)
 
   3. Create a working directory:
 
@@ -376,13 +376,10 @@ For example:
 
   5. Start the build script:
 
-    python ./build/build.py all; python ./build/build.py all
+    python ./build/build.py all
 
-**Important:** Yes, you must run the script twice the first time you buildーto
-work around known issues that cause it to fail to complete when run from scratch
-in a fresh working directory. For subsequent builds you only have to run it
-once. And note that the first time you run it, it will need time to download
-~300MB of dependencies.
+The first time you run the build script, you’ll need to be online and the build
+will need time to download several megabytes of dependencies.
 
 The steps above will build, test, and run the checker such that you can open
 `http://localhost:8888/` in a Web browser to use the checker Web UI.
@@ -396,3 +393,6 @@ separately; e.g.:
   * `python ./build/build.py build test` (to build and test)
 
   * `python ./build/build.py run` (to run only)
+
+  * `python ./build/build.py jar` (to compile `vnu.jar`)
+
