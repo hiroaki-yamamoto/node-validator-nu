@@ -2,6 +2,13 @@ language: node_js
 
 sudo: false
 
+addons:
+  apt:
+    sources:
+      - ppa:webupd8team/java
+    packages:
+      - oracle-java8-installer
+
 node_js:
   - '5.5'
   - '5.0'
