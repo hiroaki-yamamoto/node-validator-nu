@@ -9,7 +9,7 @@ node_js:
   - iojs
 
 jdk:
-  - openjdk7
+  - oraclejdk8
 
 before_deploy:
   - npm run compile
