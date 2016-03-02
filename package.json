@@ -10,7 +10,8 @@
     "url": "https://hysoftware.net/"
   },
   "contributors": [
-    "Martin von Gagern <Martin.vGagern@gmx.net>"
+    "Martin von Gagern <Martin.vGagern@gmx.net>",
+    "ybiquitous <10koba01@gmail.com>"
   ],
   "main": "./lib/validatornu.js",
   "dependencies": {
