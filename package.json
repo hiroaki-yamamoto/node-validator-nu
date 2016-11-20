@@ -18,7 +18,7 @@
     "dargs": "^4.1.0",
     "freeport": "^1.0.5",
     "q": "^1.4.1",
-    "vnu-jar": "*"
+    "vnu-jar": "latest"
   },
   "devDependencies": {
     "chai": "^3.5.0",
