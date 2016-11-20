@@ -3,7 +3,7 @@ dargs = require "dargs"
 
 module.exports =
 
-  vnuJar: path.normalize(path.join(__dirname, "..", "vnu", "vnu.jar"))
+  vnuJar: require "vnu-jar"
 
   javaBin: ->
     if process.env.JAVA_HOME
