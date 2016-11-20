@@ -5,35 +5,34 @@ describe "Class mode validation tests", ->
   Vnu = require("../../src/validatornu").Vnu
   vnu = new Vnu()
 
-  before (done) ->
+  before ->
     vnu.open().then(
-      (pid) ->
-        expect(pid).to.be.at.least(1)
-    ).catch((err) -> throw err).done (-> done()), done
-  after (done) ->
-    vnu.close().catch((err) -> throw err).done (-> done()), done
+      (pid) -> expect(pid).to.be.at.least(1)
+    ).catch((err) -> throw err)
+  after ->
+    vnu.close().catch((err) -> throw err)
 
   describe "Valid test", ->
 
     describe "Raw input", ->
-      it "There shouldn't be any errors", (done) ->
+      it "There shouldn't be any errors", ->
         q.nfcall(fs.readFile, "./tests/data/valid.html").then(
           vnu.validate
         ).then(
           (result) ->
             expect(result).length 0
-        ).catch((e) -> throw e).done (-> done()), done
+        ).catch((e) -> throw e)
 
     describe "File input", ->
       describe "Single file input", ->
-        it "There shouldn't be any errors", (done) ->
+        it "There shouldn't be any errors", ->
           testFile = "./tests/data/valid.html"
           vnu.validateFiles(testFile).then(
             (result) -> expect(result[testFile]).to.have.length 0
-          ).catch((e) -> throw e).done (-> done()), done
+          ).catch((e) -> throw e)
 
       describe "Multiple file input", ->
-        it "There shouldn't be any errors", (done) ->
+        it "There shouldn't be any errors", ->
           testFiles = [
             "./tests/data/valid.html"
             "./tests/data/valid2.html"
@@ -43,11 +42,11 @@ describe "Class mode validation tests", ->
               for file, data of result
                 expect(testFiles).include file
                 expect(data).to.have.length 0
-          ).catch((e) -> throw e).done (-> done()), done
+          ).catch((e) -> throw e)
 
   describe "Invalid test", ->
     describe "Raw input", ->
-      it "There should be proper errors", (done) ->
+      it "There should be proper errors", ->
         q.nfcall(fs.readFile, "./tests/data/invalid.html").then(
           vnu.validate
         ).then(
@@ -66,12 +65,12 @@ describe "Class mode validation tests", ->
                 "to add identifying headings to all articles."
               ].join " "
             ]
-        ).catch((e) -> throw e).done (-> done()), done
+        ).catch((e) -> throw e)
 
     describe "File input", ->
 
       describe "Single file", ->
-        it "There should be proper errors", (done) ->
+        it "There should be proper errors", ->
           file = "./tests/data/invalid.html"
           vnu.validateFiles(file).then(
             (result) ->
@@ -89,10 +88,10 @@ describe "Class mode validation tests", ->
                   "to add identifying headings to all articles."
                 ].join " "
               ]
-          ).catch((e) -> throw e).done (-> done()), done
+          ).catch((e) -> throw e)
 
       describe "Multiple files", ->
-        it "There should be proper errors", (done) ->
+        it "There should be proper errors", ->
           files = [
             "./tests/data/invalid.html"
             "./tests/data/invalid2.html"
@@ -130,11 +129,11 @@ describe "Class mode validation tests", ->
                       "No “p” element in scope but a “p” end tag seen."
                     ].join " "
                   ]
-          ).catch((e) -> throw e).done (-> done()), done
+          ).catch((e) -> throw e)
 
-        it "Repeating a file name should be all right", (done) ->
+        it "Repeating a file name should be all right", ->
           files = [
             "./tests/data/invalid.html"
             "./tests/data/invalid.html"
           ]
-          vnu.validateFiles(files).finally (-> done())
+          vnu.validateFiles(files)

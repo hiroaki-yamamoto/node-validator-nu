@@ -6,7 +6,7 @@ vnu = require "../../src/validatornu"
 
 describe "Invalid case tests", ->
   describe "Raw data test", ->
-    it "The error should be returned as an object", (done) ->
+    it "The error should be returned as an object", ->
       q.nfcall(fs.readFile, "./tests/data/invalid.html").then(
         (result) -> vnu.validate(result)
       ).then(
@@ -25,10 +25,10 @@ describe "Invalid case tests", ->
               "to add identifying headings to all articles."
             ].join " "
           ]
-      ).catch((err) -> throw err).done (-> done()), done
+      ).catch((err) -> throw err)
 
   describe "Single File", ->
-    it "The error should be returned as an object", (done) ->
+    it "The error should be returned as an object", ->
       vnu.validateFiles(
         "./tests/data/invalid.html"
       ).then((result) ->
@@ -48,10 +48,10 @@ describe "Invalid case tests", ->
             "to add identifying headings to all articles."
           ].join " "
         ]
-      ).catch((err) -> throw err).done (-> done()), done
+      ).catch((err) -> throw err)
 
   describe "Multiple Files", ->
-    it "The error should be returned as an object", (done) ->
+    it "The error should be returned as an object", ->
       cb = (result) ->
         expect(result[0].url).to.match /tests\/data\/invalid\.html$/
         expect(result[1].url).to.match /tests\/data\/invalid2\.html$/
@@ -88,7 +88,7 @@ describe "Invalid case tests", ->
         "./tests/data/invalid2.html"
       ]).then(cb).catch(
         (err) -> throw err
-      ).done (-> done()), done
+      )
 
 describe "Print Java error message", ->
   describe "When `validate()` is called", ->
