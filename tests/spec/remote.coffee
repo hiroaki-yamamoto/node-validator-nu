@@ -21,7 +21,7 @@ describe "Class mode validation tests", ->
           vnu.validate
         ).then(
           (result) ->
-            expect(result).length 2
+            expect(result).length 0
         ).catch((e) -> throw e).done (-> done()), done
 
     describe "File input", ->
@@ -29,7 +29,7 @@ describe "Class mode validation tests", ->
         it "There shouldn't be any errors", (done) ->
           testFile = "./tests/data/valid.html"
           vnu.validateFiles(testFile).then(
-            (result) -> expect(result[testFile]).to.have.length 2
+            (result) -> expect(result[testFile]).to.have.length 0
           ).catch((e) -> throw e).done (-> done()), done
 
       describe "Multiple file input", ->
@@ -42,7 +42,7 @@ describe "Class mode validation tests", ->
             (result) ->
               for file, data of result
                 expect(testFiles).include file
-                expect(data).to.have.length 2
+                expect(data).to.have.length 0
           ).catch((e) -> throw e).done (-> done()), done
 
   describe "Invalid test", ->
@@ -52,7 +52,6 @@ describe "Class mode validation tests", ->
           vnu.validate
         ).then(
           (result) ->
-            result.splice 0, 2
             expect(result).eql [
               "lastLine": 8
               "lastColumn": 13
@@ -76,7 +75,6 @@ describe "Class mode validation tests", ->
           file = "./tests/data/invalid.html"
           vnu.validateFiles(file).then(
             (result) ->
-              result[file].splice 0,2
               expect(result[file]).eql [
                 "lastLine": 8
                 "lastColumn": 13
@@ -103,7 +101,6 @@ describe "Class mode validation tests", ->
             (result) ->
               for file, data of result
                 expect(files).include file
-                data.splice 0, 2
                 if file is "./tests/data/invalid.html"
                   expect(data).eql [
                     "extract": "body>\n    <article>\n     "
