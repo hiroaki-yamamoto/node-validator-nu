@@ -20,6 +20,7 @@ node_js:
   - iojs
 
 cache:
+  apt: true
   directories:
     - "node_modules"
 
@@ -39,7 +40,10 @@ before_deploy:
 deploy:
   - provider: releases
     api_key:
-      secure: NReNxZYQ0IO5O/1axCc81WjrPZtIbL0iXCxm3YqE9N5UaNbEGPqCoHjrcMRu2WfCrDclNx/OJ286lq0U/XoY5AkKV9D/ENh2I+vHSNesM1v/3+GsNDbypFjebpgnkFPgut0hQMea/mZeJO8Y7dgfDJqb8uT8gc6GsNPD+SXWUWw=
+      secure: >-
+        NReNxZYQ0IO5O/1axCc81WjrPZtIbL0iXCxm3YqE9N5UaNbEGPqCoHjrcMRu2WfCrDclNx
+        /OJ286lq0U/XoY5AkKV9D/ENh2I+vHSNesM1v/3+GsNDbypFjebpgnkFPgut0hQMea/mZe
+        JO8Y7dgfDJqb8uT8gc6GsNPD+SXWUWw=
     file: "${TRAVIS_TAG}-compiled.tar.gz"
     skip_cleanup: true
     on:
@@ -49,6 +53,9 @@ deploy:
     email: hiroaki@hysoftware.net
     skip_cleanup: true
     api_key:
-      secure: nO9LdBsCzwF/lvTQJ6zyuZTlhk85iGN5zftoHoNvQVGXbPvR8Qb9yZNyzz+X2svPagouloRJ952zu+XXnlG9J3SdcYa9283bGQLXVcKxmCrSzTnrPhRz+oCCebTGpEjZtz7FXu6+LHjxX5JhLF7OmovOUv309d33t+u6KYtodcI=
+      secure: >-
+        nO9LdBsCzwF/lvTQJ6zyuZTlhk85iGN5zftoHoNvQVGXbPvR8Qb9yZNyzz+X2svPagoulo
+        RJ952zu+XXnlG9J3SdcYa9283bGQLXVcKxmCrSzTnrPhRz+oCCebTGpEjZtz7FXu6+LHjx
+        X5JhLF7OmovOUv309d33t+u6KYtodcI=
     on:
       tags: true
