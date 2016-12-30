@@ -3,7 +3,7 @@ vnu = require "../../src/validatornu"
 
 describe "Mixed files test cases", ->
   describe "Valid file and Invalid file are given", ->
-    it "The error should be invalid one only", (done) ->
+    it "The error should be invalid one only", ->
       cb = (result) ->
         expect(result[0].url).match /tests\/data\/invalid2\.html$/
         expect(result).to.have.length(1)
@@ -15,4 +15,4 @@ describe "Mixed files test cases", ->
       vnu.validateFiles([
         "./tests/data/valid.html",
         "./tests/data/invalid2.html"
-      ]).then(cb).done (-> done()), done
+      ]).then(cb)

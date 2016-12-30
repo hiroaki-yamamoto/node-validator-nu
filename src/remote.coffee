@@ -79,18 +79,23 @@ class Vnu
       "path": "/?out=json"
       "method": "POST"
       "headers":
+        "User-Agent": "NodeJS HttpRequest"
         "Content-Type": "text/html; charset=utf-8"
-        "Content-Length": input.length
+        "Content-Length": Buffer.byteLength input
     try
       req = http.request post_option, (res) ->
-        if res.statusCode > 299 or res.statusCode < 200
-          defer.reject(
-            new Error("Server side error! code: #{res.statusCode}")
-          )
-          return
         res.setEncoding "utf8"
-        res.on "data", (chunk) -> data.push chunk.toString()
+        res.on "data", (chunk) ->
+          data.push chunk.toString()
         res.on "end", ->
+          if res.statusCode > 299 or res.statusCode < 200
+            defer.reject(
+              new Error(
+                "Server side error! code: #{res.statusCode}
+                 body: #{data.join ''}"
+              )
+            )
+            return
           try
             data = JSON.parse(data.join("")).messages
             defer.resolve data
