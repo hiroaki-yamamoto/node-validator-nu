@@ -13,11 +13,8 @@ env:
     - JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 node_js:
-  - '5.5'
-  - '5.0'
-  - '4.1'
-  - '4.0'
-  - iojs
+  - nodejs
+  - '6'
 
 cache:
   apt: true
