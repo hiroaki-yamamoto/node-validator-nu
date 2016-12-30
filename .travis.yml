@@ -43,6 +43,7 @@ deploy:
         3sZGcptTb9EZoNkh5MyuEVEHGefqcTg=
     file: "${TRAVIS_TAG}-compiled.tar.gz"
     skip_cleanup: true
+    overwrite: true
     on:
       repo: hiroaki-yamamoto/node-validator-nu
       tags: true
