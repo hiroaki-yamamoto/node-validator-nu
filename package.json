@@ -18,7 +18,8 @@
   "dependencies": {
     "dargs": "^5.1.0",
     "freeport": "^1.0.5",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "vnu-jar": "^16.6.29"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -28,8 +29,7 @@
     "gulp-coffeelint": "^0.6.0",
     "gulp-mocha": "^3.0.1",
     "gulp-sourcemaps": "^2.2.0",
-    "mocha": "^3.2.0",
-    "vnu-jar": "^16.6.29"
+    "mocha": "^3.2.0"
   },
   "scripts": {
     "compile": "./node_modules/gulp/bin/gulp.js compile",
