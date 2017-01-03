@@ -196,3 +196,8 @@ vnu = new require("validator-nu").Vnu(
 Because this API uses [child_process.spawn](http://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options) and
 [path.join](http://nodejs.org/api/path.html#path_path_join_path1_path2), sometimes the API throws
 standard exceptions. In this case, you will need to check VNU Path and the target source file path...
+
+## Contribution
+
+When you send Pull Request, don't forget to add your name to "contributors" in
+`package.json`.
